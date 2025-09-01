@@ -48,7 +48,7 @@ CSV=CSV..",ragefire chasm=RagefireChasm,shadowfang keep=ShadowfangKeep,maraudon 
 CSV=CSV..",xp farm=XP-farm,xp run=XP-run,exp run=XP-run,elite quest=Elite-quest,aoe run=AoE-run,aoe farming=AoE-farming,aoe farm=AoE-farm,last spot=last-spot,emp run=Emp-run,emperor run=Emperor-run,jail break=JailBreak"
 CSV=CSV..",main tank=MainTank,turtle wow=TurtleWoW,alterac valley=AlteracValley,warsong gulch=WarsongGulch,need mt=Need:MT,need ot=Need:OT,project epoch=project:Epoch,project ascension=project:Ascension"
 CSV=CSV..",arcanite transmute=Arcanite-Transmute,pvp=PvP,pve=PvE,wpvp=wPvP,turtle mount=Turtle-mount,darkmoon faire=DarkmoonFaire,dragonmaw retreat=DragonmawRetreat,kara crypt=KaraCrypt"
-CSV=CSV..",strat undead=Strat:UD,strath undead=Strat:UD,strat live=Strat:Live,strath live=Strat:Live,strat living=Strat:Live,sm arm=SM:Arm,hateforge quarry=HateForgeQuarry"
+CSV=CSV..",strat undead=Strat:UD,strath undead=Strat:UD,strat live=Strat:Live,strath live=Strat:Live,strat living=Strat:Live,sm arm=SM:Arm,hateforge quarry=HateForgeQuarry,rep run=Repu-run,repu run=Repu-run"
 CSV=CSV..",vanilla wow=VanillaWoW,ranged dps=ranged-DPS,melee dps=melee-DPS,dmwest=DM:West,dmeast=DM:East,dmnorth=DM:North,cath/arms=Cath-Arms,arathi basin=ArathiBasin,first aid=FirstAid,war mode=WarMode"
 CSV=CSV..",feral druid=FeralDruid,resto druid=RestoDruid,combat log=CombatLog,arms sm=SM:Arm,booty bay=BootyBay,lava run=lava-run,kara 10=Kara10,flight path=FlightPath,sw gates=SW:gates,aq 40=AQ40"
 CSV=CSV..",princess run=princess-run,maraudon princess run=Maraudon:Princess-run,leveling guild=leveling-Guild,escort quest=escort-quest,guild leader=GuildLeader,guild invite=Guild-invite,repair bot=RepairBot"
@@ -59,7 +59,7 @@ for part in string.gmatch(CSV, "([^,]+)") do cPos=strfind(part,"=");
 	if cPos then cp1=strsub(part,1,cPos-1); cp2=strsub(part,cPos+1);
 		if cp1~="" and cp2~="" then table.insert(chReplace1,strsub(part,1,cPos-1)); table.insert(chReplace2,strsub(part,cPos+1)) end end end
 
-CSV = "lf,lfm,lfg,lf1m,lf2m,lf3m,lf4m,wtb,buying,wts,selling,wtt,brd,lbrs,ubrs,bwl,zg,zf,dmw,dme,dmn,epl,wpl,stv,sm,hfq,aq,aq20,aq40,mc,dmf,dps,rdps,f,twow,sw,bs"
+CSV = "lf,lfm,lfg,lf1m,lf2m,lf3m,lf4m,wtb,buying,wts,selling,wtt,brd,lbrs,ubrs,bwl,zg,zf,dmw,dme,dmn,epl,wpl,stv,sm,hfq,aq,aq20,aq40,mc,dmf,dps,rdps,f,twow,sw,bs,av,wsg"
 local chatUP = {}; for part in string.gmatch(CSV, "([^,]+)") do if part~="" then table.insert(chatUP, part) end end -- convert to uppercase before any detection
 
 CSV = "ES,BB,BM,FARM,QUEST,ARM,AH,IF,SS,TM";
@@ -78,7 +78,7 @@ local chLocation = {};  for part in string.gmatch(CSV, "([^,]+)") do if part~=""
 local CLOCATION = "|cFFEEFFAA" -- LGreen
 
 CSV = "tank,tanks,dps,dd,rdpsmt,ot,offtank,maintank,1heal,1healer,1tank,1dps,2dps,3dps,escort,healer,healers,heal,healz,heals,fullrun,full-run,last-spot,qs,questrun,quest-run,xp-farm,xp-run,quest-runs,xp-runs,wanted:"
-CSV=CSV..",elite-quest,elite-quests,aoe-runs,aoe-run,aoe,aoe-farm,aoe-farming,emp-run,emperor,lotus,eels,petri,middleman,middle-man,7d,emp,xp,experience,jailbreak,gm,gm's,need:all,caster,congrats,congratz,gratz,grats,grat"
+CSV=CSV..",elite-quest,elite-quests,aoe-runs,aoe-run,aoe,aoe-farm,aoe-farming,emp-run,emperor,repu-run,repu-runs,lotus,eels,petri,middleman,middle-man,7d,emp,xp,experience,jailbreak,gm,gm's,need:all,caster,congrats,congratz,gratz,grats,grat"
 CSV=CSV..",enchanter,enchanting,enchants,ench,tailor,blacksmith,bs,alch,alchemist,crafter,questline,lockboxes,lockbox,need:mt,need:ot,transmute,fountain,turtle-mount,arcanite-transmute,jc,jewelcrafter,jcer,escort-quest,engineer,engi,leatherworker,lw"
 CSV=CSV..",seller,pug,ranged-dps,melee-dps,nessingwary"
 local chGreen = {}; for part in string.gmatch(CSV, "([^,]+)") do if part~="" then table.insert(chGreen, part) end end
@@ -87,17 +87,18 @@ local CROLEGREEN = "|cFFB8E800" -- YellowyGreen
 CSV = "lava,lava-run,lava-runs,hc,hcs,hardcore,hardcores,inferno,immortal,rip,f,wtf,pvp,wpvp,showtooltip,nohelf,:nohelf,afk,dnd,oom,<AFK>,mailbox,pm,pst,w,retail,dkp,dkps,epgp,addons,addon,cooking,firstaid"
 CSV=CSV..",bg,battleground,battlegrounds,alteracvalley,av,wsg,ab,arathibasin,warsonggulch,warsong,twink,twinks,battlemasters,battlemaster,horde,combatlog,stitches,oops,nvm,hk,honorablekill,rppvp,sv"
 CSV=CSV..",spam,spamming,reported,ignore,ignoring,bot,bots,lunatic,lunatics,warmode,gank,ganker,gankers,ganking,ganked,lag,lags,lagging,disconnect,disconnecting,disconnects,cod,nerfed,bugged,invite,inv"
-CSV=CSV..",scam,scammer,scamming,world-pvp,dmg,corpse-camp,corpse,devilsaur,ninjaloot,ninjalooter,ninjad,unseen,mods,offline,toxic,def,defense,hr"
+CSV=CSV..",scam,scammer,scamming,world-pvp,dmg,corpse-camp,camping,corpse,devilsaur,ninjaloot,ninjalooter,ninjad,unseen,mods,offline,toxic,def,defense,hr"
 local chRed = {}; for part in string.gmatch(CSV, "([^,]+)") do if part~="" then table.insert(chRed, part) end end
 local CLIGHTRED = "|cFFFF9999" -- LRed
 
 CSV = "lf,lfg,lfm,lf1,lf2,lf3,lf4,lf1m,lf2m,lf3m,lf4m,lf5m,lf6m,lf7m,lf8m,lf9m,lfw,eu,na,en,group,que,queue,opening,alliance,selling,vanillawow,port,portal,bigwigs,bigwig,trainer,trainers,server,servers,serverfirst"
-CSV=CSV..",summon,summons,sum,summ,summoning,recruiting,attune,attunement,attuned,attu,jed,project:ascension,ascension,epoch,project:epoch,devs,grp,party,dungeon,dung,dungeons,inviting,blizzard,blizz,fishing"
+CSV=CSV..",summon,summons,sum,summ,summoning,recruiting,jed,project:ascension,ascension,epoch,project:epoch,devs,grp,party,dungeon,dung,dungeons,inviting,blizzard,blizz,fishing"
 local chBlue = {}; for part in string.gmatch(CSV, "([^,]+)") do if part~="" then table.insert(chBlue, part) end end
 local CLFMBLUE = "|cFF66DDFF" -- Blue
 
 CSV = "wts,wtb,wtt,turtlewow,twow,guild,guildleader,github,guild-invite,leveling-guild,leveling-guilds,tent,tents,pve,macro,macros,google,wiki,SR,ambershire,nordanaar,vendor,vendors,bijou,bijous,raid,raids,raiding,raiders,gardening,rmt"
-CSV=CSV..",guild-charter,raid-times,fp,flightpath,flightpaths,rp,tmog,transmog,roleplay,roleplaying,roleplayer,rppve,tbc,wotlk,pandaria,draenor,cataclysm,burningcrusade,bc,vanilla,classicwow,repairbot,turtle,online,reputation,repu,rep,achievement"
+CSV=CSV..",guild-charter,raid-times,fp,flightpath,flightpaths,rp,tmog,transmog,roleplay,roleplaying,roleplayer,rppve,tbc,wotlk,pandaria,draenor,cataclysm,burningcrusade,bc,vanilla,classicwow,repairbot,turtle,online,reputation,repu,rep"
+CSV=CSV..",achievement,attune,attunement,attuned,attu"
 local chLGreen = {}; for part in string.gmatch(CSV, "([^,]+)") do if part~="" then table.insert(chLGreen, part) end end
 local CWTSGREEN = "|cFF77FF77" -- Green
 
@@ -121,7 +122,7 @@ DCFmsg(CROLEGREEN.."TurtleChatColors loaded "..CYELLOW..TCCcount..CROLEGREEN.." 
 
 function TCCHighlightStrs (message)
   if (message ~= "") and (message ~= nil) then
-	if string.upper(strsub(message,-2))==":(" then message=strsub(message,1,-2)..CLRED..":("
+	if string.upper(strsub(message,-2))==":(" then message=strsub(message,1,-3)..CLRED..":("
 	elseif string.upper(message)=="GZ" or string.upper(message)=="GZ!" then message=CWTSGREEN..message
 	end
 	
@@ -552,6 +553,16 @@ function TurtleChangeSystem (message)	-- special characters (must escape with %)
 			wasokk=true
 		elseif string.find(message,"player") and strsub(message,-5)=="total" then message=nil; wasokk=true;
 		elseif string.find(message,"%[") and string.find(message," Level") and string.find(message," - ") then message=nil; wasokk=true;
+		elseif (strsub(message,1,15)=="Your auction of") and (strsub(message,-5)=="sold.") then 
+			_,a = string.find(message,"auction of");
+			b,_ = string.find(message,"sold.");
+			hName = strsub(message,a+2,b-2)
+			--gkiir("'"..hName.."'")	
+			--message = CGREEN.."*|r"..string.gsub(message, hName, CWHITE..hName.."|r"); 
+			message = "   "..CYELLOW..strsub(message,1,a+1)..CGREEN.."*"..CWHITE..hName..CGREEN.."*"..CYELLOW..strsub(message,b-1)
+			wasokk=true; 
+			--PlaySound("AuctionWindowOpen")
+			PlaySound("AuctionWindowClose")
 		else wasokk=true;
 			message = CYELLOW..message;
 		end	
@@ -780,7 +791,7 @@ function TurtleChatColors_ChatFrame_OnEvent(event)
 -- arg1 is the actual message
 -- arg2 is the player name
 	if (gspecial) and (event == "CHAT_MSG_LOOT") then -- XXX has selected Need for:  
-		local tmessage = arg1
+		--[[local tmessage = arg1
 		if string.find(tmessage," has selected Need ") and string.find(tmessage," for:") and gspecial then	
 			gReadRoster()
 			a,b = string.find(tmessage," has selected Need for: ");
@@ -790,7 +801,7 @@ function TurtleChatColors_ChatFrame_OnEvent(event)
 			tmessage = CYELLOW.."NEED|r:"..hItem..": "..color..string.upper(hName).."|r!";
 			this:AddMessage(tmessage);
 			return				
-		end		
+		end		]]
 	elseif (event == "CHAT_MSG_SYSTEM") then --kiir("SYS!: "..arg1)
 		local sysresult = TurtleChangeSystem(arg1)
 		if sysresult==nil or sysresult=="" then return
