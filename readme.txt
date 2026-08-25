@@ -1,73 +1,89 @@
-Just some quick note about the addon:
-https://github.com/DaMaGepyHUN/TurtleChatColors
-(!) To install to the Interface/AddOns, RENAME folder to:  TurtleChatColors
+# OctoChatColors
 
-http://damagepy.byethost3.com/TurtleChatColors4.png
+A chat enhancement addon for **Vanilla WoW (1.12.1)**, specifically tailored and optimized for **Octo WoW**. 
 
-What it does:
-- In system messages (death/levelup) makes names clickable (for whisper) and
-  colors them by class if they are in the guild (if not then they will be 
-  silver-colored or green in system messages
-- Death/LevelUp messages are compacted into one row, plus the higher the level
-  the more asterisks are shown to show the significance (a * for every 10 lvl)
-- Highlights certain keywords in chat: WTS LF2M, key locations like
-  Stockades, Dire Maul, Deadmines, ubrs, GC, or words like Healer, 2dps, etc.
-- My auto-response in guildchat is a secret switch so the addon won't spam it
-  automatcally for others. I made it so people without the addon can still
-  see if a guildie died, or if .hcmessages are set too high to show
-- /gs <text> - search guild for a name (if online on an alt)
-  It also searches notes so can check ppl for profs, for example: /gs alch
-- it Highlights in Trade, General and World chat. I havent added any GUI or 
-  command to set the channels or to change the colors, if you don't like the
-  appearance then just disable/delete the addon.
+*(Originally created as "TurtleChatColors" by DaMaGepy for Turtle WoW, now updated, cleaned up, and optimized by uranreactor).*
 
-I've added some other useful function which ppl can use in macros:
+![Lua 5.0](https://img.shields.io/badge/Lua-5.0-blue)
+![WoW Version](https://img.shields.io/badge/WoW-1.12.1-yellowgreen)
+![Version](https://img.shields.io/badge/Version-1.0-brightgreen)
 
-To show current rested bonus percentage (from: not rested ... 100%):
+---
+
+## 📦 Installation
+
+1. Download or clone this repository.
+2. **IMPORTANT:** Rename the extracted folder to exactly `OctoChatColors`.
+3. Place the folder into your WoW directory: `Interface/AddOns/`
+4. The final path should look like this: `Interface/AddOns/OctoChatColors/OctoChatColors.toc`
+5. Launch the game. The addon loads automatically.
+
+---
+
+## ✨ Key Features
+
+### 🎨 System & Hardcore Messages
+- **Compact & Informative:** Death and Level-Up messages are compacted into clean, readable rows.
+- **Class Colors:** Player names are colored by their class (if they are in your guild or have been seen). Unknown players default to silver/green in system messages.
+- **Level Significance:** The higher the player's level, the more asterisks (`*`) are shown next to the message to indicate the significance of the event (one `*` for every 10 levels).
+- **OctoWoW Compatibility:** Specifically tuned to correctly parse Octo WoW's unique Hardcore death, PvP, and Immortal challenge system messages.
+
+### 💬 Channel Chat Formatting
+- **Clean Prefixes:** Channel messages are displayed in a clean format: `[5] [Player]: Message` (instead of the default cluttered `[5. World] [Player]: Message`).
+- **Smart Detection:** Case-insensitive channel detection ensures highlighting works perfectly whether the server reports the channel as `World`, `world`, `Trade`, etc.
+- **Supported Channels:** World, Trade, General, Looking For Group, Recruitment, and Local Defense.
+
+### 🔍 Keyword Highlighting
+Automatically highlights and formats common keywords to make busy chats easy to scan:
+- **Trading:** `WTS`, `WTB`, `WTT`, `selling`, `buying`
+- **Grouping:** `LFM`, `LFG`, `LF2M`, `need MT`, `queue`
+- **Locations & Dungeons:** `Stockades`, `Dire Maul`, `Deadmines`, `UBRS`, `Gilneas City`, `Stratholme`, etc.
+- **Roles & Professions:** `Healer`, `2dps`, `tank`, `enchanter`, `alch`, etc.
+
+### 🛠 Guild Tools
+- **Smart Guild Search:** Type `/gs <text>` or `/gsearch <text>` to search for guild members by name **or** officer/public notes. 
+  - *Example:* `/gs alch` will list all guildies who have "alch" or "alchemist" in their notes.
+
+---
+
+## ⌨️ Useful Macro Commands
+
+The addon exposes two helpful functions that you can put into your own macros:
+
+**1. Check Rested Bonus Percentage**  
+Shows your current rested XP percentage (from 0% to 100%).
+```lua
 /run showrested()
+```
 
-To delete all "Dim Torch" from bags with one click (for STV survival lvling):
+**2. Bulk Delete "Dim Torch"**  
+Instantly deletes all "Dim Torch" items from your bags with one click (highly useful for Stranglethorn Vale Survival leveling).
+```lua
 /run deletetorches()
+```
 
-TO-DO:
-Later I may add my bag-swap macro as well for fast switching into new
-bigger bags (moving all thing from old bag, switch, then moving all stuff
-back), I have this and many other macro in my other private addon. For
-example spammable auto-buff macro which buffs on mouseover (but does not 
-buffs PvP flagged players unless holding a special key to force it), then
-the targeted player, then self, chosing the proper spellrank, and also does 
-stuff to you, for example on druid after buffing motw and thorns, also 
-regrowth/reju if below certain HP%. I also have one-button attack rotation 
-for most class for example on druid: if in bear form then uses enrage if 
-available then spams maul, in cat form claw, but another macro first 
-autotargets and uses feriefire, turns on autoattack, then rakes and then
-claw spam and uses ferociousbite below a certain enemy HP% or at or above
-4 combopoint. Another spammable macro is shifts out, casts regrowth/reju then
-shifts back to the last used form and continues claw/autoattack (spammable,
-so you wont shift in and then out again accidentally). Similar one-button
-for locks, sending pet, and based on level talent and available spells it
-DoTs with agony corruption siphonlife. There is also a macro for spammable
-wanding which just turns it on and keeps it on, or a spammable channeling
-macro for forexample drainlife or mindflay, where it only recasts them if
-they are stopped channeling (therefore spammable). For hunters the one-button
-attack macro sends pet (if available), autotargets, does hunter's mark,
-serpent sting, turns auto shot on, then arcane shot (if you keep pressing)
-and refreshes serpent sting if falls off or resists. But if you are below
-level 10 or without a pet it does things differently, uses concshot first
-then serpent (if learned), arcane, etc. There is also a feedpet macro which
-shows the available number of food in a certain bagslot in the macro-text
-and feeds the pet, or calls the pet if not out or resurrects if dead.
-For locks a apammable macro for void sacrifice (if void is out) auto-eating 
-a healthstone and on third press using a healingpot, or for example a
-curseofexhaustion macro which uses amplifymagic if available. I also made a
-mouseover healing macro, to heal mouseover, then target, then self (if no 
-target or target is enemy) and uses the max rank automatically so no need
-to swap newly purchased spells. The same goes for attacking spells with 
-autotargeting. I wrote all of this because I wrote that private addon in 2005
-for myself and using it myself since and adding more and more function for
-servers where 1.12 and CastSpellByName is allowed. Found/joined Turtle HC
-in mid January 2023, so I though some others may like my spec macros as well.
-Let me know if you do, so I may make that available as well.
-And I appreciate all feedback :)
-  
-Cya: DaMaGepy		(damagepyhun@gmail.com / discord:DaMaGepyHUN#2928)
+---
+
+## 🚀 What's New in this Octo WoW Fork?
+
+If you are familiar with the original TurtleChatColors, here is what has been improved:
+1. **Massive Performance Optimization:** Replaced slow, frame-dropping `O(n)` list iterations with lightning-fast `O(1)` hash-table lookups for keyword highlighting. Chat performance in busy channels is now significantly smoother.
+2. **Cleaner Chat UI:** Removed the channel name from the chat prefix, leaving only the channel number and player name for a minimalist look.
+3. **OctoWoW Parsing:** Updated string matching to correctly handle Octo WoW's specific system message formats for Hardcore deaths and level-ups.
+4. **Code Cleanup:** Removed hardcoded personal data, alt-account tracking, and redundant guild announcement logic from the original codebase. The addon is now lighter, faster, and strictly focused on chat formatting for *everyone*.
+
+---
+
+## 📜 A Note from the Original Author (DaMaGepy)
+
+> *"I've added some other useful functions which people can use in macros. Later I may add my bag-swap macro, spammable auto-buff macros, one-button attack rotations for various classes, and smart healing/wanding macros. I wrote this private addon for myself in 2005 and have been refining it since. I joined Turtle HC in mid-January 2023 and thought some others might like my spec macros as well. Let me know if you do, so I may make them available!"*  
+> — **DaMaGepy** *(damagepyhun@gmail.com / Discord: DaMaGepyHUN#2928)*
+
+---
+
+## 🙏 Credits
+
+- **Original Concept & Code:** [DaMaGepy](https://github.com/DaMaGepyHUN/TurtleChatColors)
+- **Octo WoW Adaptation, Optimization & Cleanup:** uranreactor
+
+*If you don't like the appearance or colors, you can easily tweak the `CSV` lists and color codes at the top of the `OctoChatColors.lua` file. Otherwise, enjoy a cleaner, faster chat!*
