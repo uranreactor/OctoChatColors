@@ -1,0 +1,20 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+    <!-- Scripts -->
+    <Script file="OctoChatColors.lua"/>
+
+<Frame name="OctoChatColors" parent="UIParent" hidden="true">
+	<Scripts>
+		<OnLoad>
+			OctoChatColors_OnLoad();
+		</OnLoad>
+		<OnEvent>
+			OctoChatColors_OnEvent(event);
+		</OnEvent>
+	</Scripts>
+</Frame>
+</Ui>
+
+
+
